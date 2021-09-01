@@ -18,13 +18,13 @@ _⚙️ Herramientas empleadas:_
 
 ## Especifiaciones y Recursos visuales
 ### Ideación de la API
-- [`Preguntas de Ideación`](./postwork/Ideacion/)
+- [`Preguntas de Ideación`](postwork/Ideacion/)
 
 ### Historias de Usuario
-- [`Historias de Usuario`](./postwork/Historias/)
+- [`Historias de Usuario`](postwork/Historias/)
 
 ### Casos de Uso
-- [`Historias de Usuario`](.postwork/Casos/)
+- [`Historias de Usuario`](postwork/Casos/)
 
 
 ## 🚀 Inicialización
