@@ -1,0 +1,31 @@
+{
+  "name": "regardeapi",
+  "version": "1.0.0",
+  "description": "Team 13 Regarde Api Project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node ./app.js",
+    "dev": "nodemon ./app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Kify7/regardeApi.git"
+  },
+  "keywords": [
+    "backend",
+    "api",
+    "project"
+  ],
+  "author": "Bedu Santander Team 13",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Kify7/regardeApi/issues"
+  },
+  "homepage": "https://github.com/Kify7/regardeApi#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1"
+  }
+}
