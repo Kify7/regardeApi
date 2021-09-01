@@ -1,7 +1,6 @@
-# Regarde API
+# 📝 Historias de Usuario
 ### Equipo 13
 
-## ✏️ Casos de Uso
 
 | ID | HISTORIA DE USUARIO |
 | ------------- | ------------- |

@@ -24,7 +24,7 @@ _⚙️ Herramientas empleadas:_
 - [`Historias de Usuario`](postwork/Historias/)
 
 ### Casos de Uso
-- [`Historias de Usuario`](postwork/Casos/)
+- [`Casos de Uso`](postwork/Casos/)
 
 
 ## 🚀 Inicialización
