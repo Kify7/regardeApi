@@ -16,7 +16,7 @@ _⚙️ Herramientas empleadas:_
 * [Swagger.io](https://swagger.io/) - Herramienta para el diseño, construcción y documentación de una API.
 * [gitignore.io](https://www.toptal.com/developers/gitignore) - Herramienta de desarrollo para crear un archivo `'/.gitignore'` eficiente.
 
-## Especifiaciones y Recursos visuales
+## Especificaciones y Recursos visuales
 ### Ideación de la API
 - [`Preguntas de Ideación`](postwork/Ideacion/)
 
