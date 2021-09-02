@@ -1,6 +1,8 @@
 # Regarde API
 ### Equipo 13
 
+***
+
 ## 📋 ¿De qué trata el proyecto?
 
 _Desarrollo de una RESTful API de Películas_
@@ -10,20 +12,25 @@ _Desarrollo de una RESTful API de Películas_
 
 ### 🛠️ Construido con:
 
-_⚙️ Herramientas empleadas:_
-
+* JavaScript
 * [Node.js](https://nodejs.dev/) - Hace referencia al entorno de ejecución de JavaScript utilizado.
+* [Mongo DB Atlas](https://www.mongodb.com/) - Sistema de Base de Datos NoSQL.
+
+### ⚙️ Herramientas empleadas:
+
 * [Swagger.io](https://swagger.io/) - Herramienta para el diseño, construcción y documentación de una API.
 * [gitignore.io](https://www.toptal.com/developers/gitignore) - Herramienta de desarrollo para crear un archivo `'/.gitignore'` eficiente.
+* [draw.io](https://app.diagrams.net/) - Herramienta para realización de diagramas de software.
 
-## Especificaciones y Recursos visuales
+## ✅ Especificaciones y Recursos visuales
+
 ### Ideación de la API
 - [`Preguntas de Ideación`](postwork/Ideacion/)
 
 ### Historias de Usuario
 - [`Historias de Usuario`](postwork/Historias/)
 
-### Casos de Uso
+### Diagramas de Casos de Uso
 - [`Casos de Uso`](postwork/Casos/)
 
 
@@ -34,7 +41,6 @@ Development Environment
 ```
 npm run dev
 ```
-
 
 
 ## 💻 Colaboradores
