@@ -79,3 +79,21 @@ Películas ( título, año, director, reparto, trailer, categoría)
 
 ### ¿Qué funcionalidades tiene cada entidad?
 
+* Usuario(Cliente):  
+    * Crear nombre de usuario
+    * Crear o modificar contraseña
+    * Crear, modificar o eliminar perfil
+    * Crear , ver, modificar o eliminar lista de favoritos
+    * Crear, ver, modificar o eliminar  comentarios.
+    * Ver comentarios de otros usuarios
+
+* Administrador:
+    * Crear , ver, modificar o eliminar usuarios
+    * Ver o eliminar  comentarios de todos los usuarios.
+
+* Película:
+    * Mostrar la información correspondiente.
+    * Comentario:
+    * Post  o eliminación de comentario.
+
+
