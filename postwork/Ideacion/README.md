@@ -48,9 +48,11 @@ Películas ( título, año, director, reparto, trailer, categoría)
 * Usuario(Cliente):  
     * ID
     * Perfil:
-        * Nombre
-        * Apellido
-        * Imagen o Foto
+    
+      * Nombre
+      * Apellido
+      * Imagen o Foto
+        
     * Nombre de usuario 
     * Contraseña
     * Lista de favoritos:
@@ -70,7 +72,7 @@ Películas ( título, año, director, reparto, trailer, categoría)
     * Reparto
     * Imagen 
     * Descripción 
-    * Puntaje
+    * Puntaje (Ranking)
     * Comentarios
 
 * Comentario:
@@ -86,6 +88,7 @@ Películas ( título, año, director, reparto, trailer, categoría)
     * Crear , ver, modificar o eliminar lista de favoritos
     * Crear, ver, modificar o eliminar  comentarios.
     * Ver comentarios de otros usuarios
+    * Rankear película
 
 * Administrador:
     * Crear , ver, modificar o eliminar usuarios
@@ -93,7 +96,9 @@ Películas ( título, año, director, reparto, trailer, categoría)
 
 * Película:
     * Mostrar la información correspondiente.
-    * Comentario:
+    * Mostrar el puntaje de rankeo
+    
+* Comentario:
     * Post  o eliminación de comentario.
 
 
