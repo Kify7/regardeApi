@@ -20,3 +20,7 @@
 | 14    |   Como administrador: Quiero eliminar comentarios para no permitir conductas inapropiadas.  |
 | 15    |   Como administrador: Quiero eliminar peliculas menos vistas para tener un mejor control |
 | 16    |   Como administrador: Quiero modificar nombres de peliculas para tener buena administración de estas |
+
+---
+
+[`Atrás`](../../README.md)
