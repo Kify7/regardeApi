@@ -67,7 +67,7 @@ Películas ( título, año, director, reparto, trailer, categoría)
 * Película:
     * ID
     * Título
-    * Generos
+    * Géneros
     * Año
     * Director
     * Reparto
