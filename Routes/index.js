@@ -7,5 +7,6 @@ router.get('/', (req, res) => {
 
 
 router.use('/admin', require('./Admin'));
+router.use('/movies', require('./movies'));
 
 module.exports = router;
