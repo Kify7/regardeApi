@@ -66,7 +66,8 @@ Películas ( título, año, director, reparto, trailer, categoría)
 
 * Película:
     * ID
-    * Título 
+    * Título
+    * Generos
     * Año
     * Director
     * Reparto
@@ -74,6 +75,7 @@ Películas ( título, año, director, reparto, trailer, categoría)
     * Descripción 
     * Puntaje (Ranking)
     * Comentarios
+    * Trailer
 
 * Comentario:
     * ID
