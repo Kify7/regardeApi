@@ -1,4 +1,4 @@
-class Coment {
+class Comment {
     constructor(id,user, movie, text){
         this.id = id;
         this.user = user;
@@ -8,4 +8,4 @@ class Coment {
     }
 }
 
-module.exports = Coment;
+module.exports = Comment;
