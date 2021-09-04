@@ -36,6 +36,13 @@ _Desarrollo de una RESTful API de Películas_
 
 ## 🚀 Inicialización
 
+```
+npm init -y
+```
+```
+npm install
+```
+
 Development Environment
 
 ```
