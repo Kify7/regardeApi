@@ -8,7 +8,7 @@ router.get('/', (req, res) => {
 
 router.use('/admin', require('./Admin'));
 router.use('/movies', require('./movies'));
-router.use('/movies', require('./comments'));
-router.use('/movies', require('./User'));
+router.use('/comments', require('./comments'));
+router.use('/user', require('./User'));
 
 module.exports = router;
