@@ -79,7 +79,9 @@ Películas ( título, año, director, reparto, trailer, categoría)
 
 * Comentario:
     * ID
-    * Formulario
+    * Usuario
+    * Película
+    * Texto
 
 ### ¿Qué funcionalidades tiene cada entidad?
 
@@ -93,7 +95,8 @@ Películas ( título, año, director, reparto, trailer, categoría)
     * Rankear película
 
 * Administrador:
-    * Crear , ver, modificar o eliminar usuarios
+    * Crear , ver, modificar o eliminar usuarios.
+    * Crear , ver, modificar o eliminar películas.
     * Ver o eliminar  comentarios de todos los usuarios.
 
 * Película:
