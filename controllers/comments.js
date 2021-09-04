@@ -6,7 +6,7 @@ function createComment(req, res) {
 
 function getComment(req, res) {
     let html;
-    res.send(html = `<h1 style="color:red; text-align:center;">Coment Information</h1>`);
+    res.send(html = `<h1 style="color:red; text-align:center;">Comment Information</h1>`);
 }
 
 
