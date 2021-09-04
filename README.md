@@ -36,9 +36,14 @@ _Desarrollo de una RESTful API de Películas_
 
 ## 🚀 Inicialización
 
+Inicializacón de proyecto
+
 ```
 npm init -y
 ```
+
+Instalación de las dependencias necesarias
+
 ```
 npm install
 ```
