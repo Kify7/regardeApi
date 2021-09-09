@@ -4,7 +4,7 @@ const {
     getAdmin,
     updateAdmin,
     deleteAdmin
-} = require('../controllers/Admin')
+} = require('../controllers/admin')
 
 router.post('/', createAdmin)
 router.get('/', getAdmin)
