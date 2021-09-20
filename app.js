@@ -12,7 +12,7 @@ app.use(bodyParser.json());
 const mongoose = require('mongoose');
 
 mongoose.connect(
-    "mongodb+srv://admin:x3G7htlwnKvqQk0i@cluster0.5x6ep.mongodb.net/regarde_bd?retryWrites=true&w=majority"
+    "DB connect"
 );
 
 mongoose.set("debug", true);
