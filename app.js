@@ -8,6 +8,18 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json());
 
 
+//conecction db
+const mongoose = require('mongoose');
+
+mongoose.connect(
+    "DB Connection"
+);
+
+mongoose.set("debug", true);
+
+require('./models/Admin');
+
+
 app.use('/v1', require('./routes'));
 
 const PORT = 4001;
