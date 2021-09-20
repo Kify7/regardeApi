@@ -12,12 +12,13 @@ app.use(bodyParser.json());
 const mongoose = require('mongoose');
 
 mongoose.connect(
-    "DB Connection"
+    "mongodb+srv://admin:x3G7htlwnKvqQk0i@cluster0.5x6ep.mongodb.net/regarde_bd?retryWrites=true&w=majority"
 );
 
 mongoose.set("debug", true);
 
 require('./models/Admin');
+require('./models/Movie')
 
 
 app.use('/v1', require('./routes'));
