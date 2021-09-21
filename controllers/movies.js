@@ -1,20 +1,74 @@
-const Movie = require('../models/Movie')
+// const Movie = require('../models/Movie')
+const mongoose = require('mongoose')
+const Movie = mongoose.model('Movie')
 
-function createMovie(req, res) {
-
+function createMovie(req, res, next) {
+    var movie = new Movie(req.body)
+    movie.save()
+        .then(movie => {
+        res.status(200).send(movie)
+        })
+        .catch(next)
 }
 
-function getMovie(req, res) {
-    let html;
-    res.send(html = `<h1 style="color:DarkSlateBlue; text-align:center;">Movie information</h1>`);
+function getMovie(req, res, next) {
+    if (req.params.id) {
+        Movie.findById(req.params.id)
+            .then(movie => {
+                res.send(movie)
+            })
+            .catch(next)
+    }
+    else {
+        Movie.find()
+            .then(movies => {
+                res.send(movies)
+            })
+            .catch(next)
+    }
 }
 
 
-function updateMovie(req, res) {
-
+function updateMovie(req, res, next) {
+    Movie.findById(req.params.id)
+        .then(movie => {
+            if (!movie)
+                return res.sendStatus(401)
+            let newData = req.body
+            if (typeof newData.title !== 'undefined')
+                movie.title = newData.title
+            if (typeof newData.genres !== 'undefined')
+                movie.genres = newData.genres
+            if (typeof newData.year !== 'undefined')
+                movie.year = newData.year
+            if (typeof newData.directors !== 'undefined')
+                movie.directors = newData.directors
+            if (typeof newData.cast !== 'undefined')
+                movie.cast = newData.cast
+            if (typeof newData.poster !== 'undefined')
+                movie.poster = newData.poster
+            if (typeof newData.description !== 'undefined')
+                movie.description = newData.description
+            if (typeof newData.ranking !== 'undefined')
+                movie.ranking = newData.ranking
+            if (typeof newData.trailer !== 'undefined')
+                movie.trailer = newData.trailer
+            movie.save()
+                .then(updated => {
+                    res.status(201).json(updated.publicData())
+                })
+                .catch(next)
+        })
+        .catch(next)
 }
 
-function deleteMovie(req, res) {
+function deleteMovie(req, res, next) {
+    Movie.findOneAndDelete({ _id: req.params.id })
+        .then(deleted => {
+            res.status(200).send('The movie was deleted.')
+        })
+        .catch(next)
+    
 
 }
 
