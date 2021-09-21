@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+require('dotenv').config();
 
 const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({
@@ -7,13 +8,15 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(bodyParser.json());
 
-
 //conecction db
 const mongoose = require('mongoose');
 
-mongoose.connect(
-    "DB connect"
-);
+mongoose.connect(process.env.DB_CONNECTION, {})
+    .then(res => {
+        console.log('Connected to database ' + res.connections[0].name + ' ...');
+    }).catch(err => {
+        console.log('Error to connect to database!');
+    });
 
 mongoose.set("debug", true);
 
@@ -23,7 +26,7 @@ require('./models/Movie')
 
 app.use('/v1', require('./routes'));
 
-const PORT = 4001;
+const PORT = process.env.PORT;
 app.listen(PORT, () => {
     console.log(`Server listening on port ${PORT}`);
 });
