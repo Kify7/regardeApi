@@ -11,7 +11,7 @@ app.use(bodyParser.json());
 //conecction db
 const mongoose = require('mongoose');
 
-mongoose.connect(process.env.DB_CONNECTION, {})
+mongoose.connect(process.env.DB_CONNECTION, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false, useCreateIndex: true })
     .then(res => {
         console.log('Connected to database ' + res.connections[0].name + ' ...');
     }).catch(err => {
