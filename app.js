@@ -12,12 +12,13 @@ app.use(bodyParser.json());
 const mongoose = require('mongoose');
 
 mongoose.connect(
-    "DB Connection"
+    "DB connect"
 );
 
 mongoose.set("debug", true);
 
 require('./models/Admin');
+require('./models/Movie')
 
 
 app.use('/v1', require('./routes'));
