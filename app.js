@@ -20,9 +20,11 @@ mongoose.connect(process.env.DB_CONNECTION, { useNewUrlParser: true, useUnifiedT
 
 mongoose.set("debug", true);
 
+require('./models/User');
 require('./models/Admin');
 require('./models/Movie')
 require('./models/Comment')
+require('./config/passport')
 
 
 app.use('/v1', require('./routes'));

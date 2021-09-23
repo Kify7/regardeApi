@@ -72,7 +72,7 @@ UserSchema.methods.toAuthJSON = function () {
     return {
         username: this.username,
         email: this.email,
-        token: this.generaJWT()
+        token: this.generateJWT()
     }
 }
 
@@ -81,9 +81,9 @@ UserSchema.methods.publicData = function () {
         id: this.id,
         username: this.username,
         email: this.email,
-        name: this.nombre,
-        lastname: this.apellido,
-        type: this.tipo,
+        name: this.name,
+        lastname: this.lastname,
+        type: this.type,
         createdAt: this.createdAt,
         updatedAt: this.updatedAt
     }
