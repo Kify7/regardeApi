@@ -9,7 +9,7 @@ const MovieSchema = new mongoose.Schema({
     cast: [String],
     poster: {type: String},
     description: {type: String, require: true},
-    ranking: {type: Number, min: 0, max: 5},
+    rate: {type: Number, min: 0, max: 5},
     trailer: {type: String}
 }, { collection: 'movies', timestamps: true })
 
@@ -23,7 +23,7 @@ MovieSchema.methods.publicData = () => {
         cast: this.cast,
         poster: this.poster,
         description: this.description,
-        ranking: this.ranking,
+        rate: this.rate,
         trailer: this.trailer
     }
 }
