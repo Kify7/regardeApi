@@ -9,13 +9,13 @@ function getTokenFromHeader(req) {
 }
 
 const auth = {
-    requerido: jwt({
+    required: jwt({
         secret: secret,
         algorithms: ['HS256'],
         userProperty: 'user',
         getToken: getTokenFromHeader
     }),
-    opcional: jwt({
+    optional: jwt({
         secret: secret,
         algorithms: ['HS256'],
         userProperty: 'user',

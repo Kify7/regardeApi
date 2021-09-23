@@ -10,7 +10,7 @@ passport.use('admin-login', new LocalStrategy({
 }, function (email, password, next) {
     Administrator.findOne({ email: email })
         .then(function (user) {
-            if (!user || !user.validarPassword(password)) {
+            if (!user || !user.validatePassword(password)) {
                 return next(null, false, { error: { 'email o contraseña': 'equivocado(a)' } })
             }
             return next(null, user)
@@ -24,7 +24,7 @@ passport.use('user-login', new LocalStrategy({
 }, function (email, password, next) {
     User.findOne({ email: email })
         .then(function (user) {
-            if (!user || !user.validarPassword(password)) {
+            if (!user || !user.validatePassword(password)) {
                 return next(null, false, { error: { 'email o contraseña': 'equivocado(a)' } })
             }
             return next(null, user)
