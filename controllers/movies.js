@@ -2,6 +2,8 @@
 const mongoose = require('mongoose')
 const Movie = mongoose.model('Movie')
 
+//Moverse a controlador admin
+//---------------------------------------------------------------------
 function createMovie(req, res, next) {
     var movie = new Movie(req.body)
     movie.save()
@@ -10,7 +12,9 @@ function createMovie(req, res, next) {
         })
         .catch(next)
 }
+//---------------------------------------------------------------------
 
+//Esta función la dejamos pública
 function getMovie(req, res, next) {
     if (req.params.id) {
         Movie.findById(req.params.id)
@@ -28,7 +32,8 @@ function getMovie(req, res, next) {
     }
 }
 
-
+//Moverse a controlador admin
+//---------------------------------------------------------------------
 function updateMovie(req, res, next) {
     Movie.findById(req.params.id)
         .then(movie => {
@@ -61,15 +66,16 @@ function updateMovie(req, res, next) {
         })
         .catch(next)
 }
+//---------------------------------------------------------------------
 
+//Moverse a controlador admin
+//---------------------------------------------------------------------
 function deleteMovie(req, res, next) {
     Movie.findOneAndDelete({ _id: req.params.id })
         .then(deleted => {
             res.status(200).send('The movie was deleted.')
         })
         .catch(next)
-    
-
 }
 
 module.exports = {
@@ -78,3 +84,4 @@ module.exports = {
     updateMovie,
     deleteMovie
 }
+//---------------------------------------------------------------------
