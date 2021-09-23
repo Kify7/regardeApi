@@ -892,6 +892,11 @@
   optionalDependencies:
     "saslprep" "^1.0.0"
 
+"mongoose-autopopulate@^0.16.0":
+  "integrity" "sha512-OSRETKRTk6B3cF7cSLYPE+iUs/DTIY5+07gVYNzCdTRu4oB3uMahc0qjZYepZqZJKm+nv8SihtSHRM5gScn+fA=="
+  "resolved" "https://registry.npmjs.org/mongoose-autopopulate/-/mongoose-autopopulate-0.16.0.tgz"
+  "version" "0.16.0"
+
 "mongoose-legacy-pluralize@1.0.2":
   "integrity" "sha512-Yo/7qQU4/EyIS8YDFSeenIvXxZN+ld7YdV9LqFVQJzTLye8unujAWPZ4NWKfFA+RNjh+wvTWKY9Z3E5XM6ZZiQ=="
   "resolved" "https://registry.npmjs.org/mongoose-legacy-pluralize/-/mongoose-legacy-pluralize-1.0.2.tgz"
@@ -905,7 +910,7 @@
     "lodash.foreach" "^4.1.0"
     "lodash.get" "^4.0.2"
 
-"mongoose@*", "mongoose@^5.10.13", "mongoose@^5.2.1":
+"mongoose@*", "mongoose@^5.10.13", "mongoose@^5.2.1", "mongoose@6.x":
   "integrity" "sha512-JbLw5ie0LJxm7V9LoNxRY//6cyFJf0cOpON2TWUWvF9pabil6ArfECL3xHV2N+mwwO4gXiIa+c0pwTzDUVTgqw=="
   "resolved" "https://registry.npmjs.org/mongoose/-/mongoose-5.13.9.tgz"
   "version" "5.13.9"

@@ -1,6 +1,7 @@
 // const Movie = require('../models/Movie')
 const mongoose = require('mongoose')
 const Movie = mongoose.model('Movie')
+// const Comment = mongoose.model('Comment')
 
 //Moverse a controlador admin
 //---------------------------------------------------------------------

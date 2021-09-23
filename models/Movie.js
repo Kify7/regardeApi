@@ -10,10 +10,16 @@ const MovieSchema = new mongoose.Schema({
     poster: {type: String},
     description: {type: String, require: true},
     rate: {type: Number, min: 0, max: 5},
-    trailer: {type: String}
+    trailer: { type: String },
+    comments: [
+        {
+            type: mongoose.Schema.Types.ObjectId, ref: 'Comment', autopopulate: true
+        }
+    ]
 }, { collection: 'movies', timestamps: true })
+MovieSchema.plugin(require('mongoose-autopopulate'));
 
-MovieSchema.methods.publicData = () => {
+MovieSchema.methods.publicData = function() {
     return {
         id: this.id,
         title: this.title,
