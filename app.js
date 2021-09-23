@@ -22,6 +22,7 @@ mongoose.set("debug", true);
 
 require('./models/Admin');
 require('./models/Movie')
+require('./models/Comment')
 
 
 app.use('/v1', require('./routes'));

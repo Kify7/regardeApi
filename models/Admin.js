@@ -1,14 +1,3 @@
-// class Admin {
-//     constructor(id, name, password, email) {
-//         this.id = id;
-//         this.name = name;
-//         this.password = password;
-//         this.email = email;
-//     }
-// }
-
-// module.exports = Admin;
-
 const mongoose = require('mongoose');
 
 const AdminSchema = new mongoose.Schema({
@@ -23,7 +12,7 @@ const AdminSchema = new mongoose.Schema({
     collection: 'users'
 });
 
-AdminSchema.methods.publicData = () => {
+AdminSchema.methods.publicData = function() {
     return {
         id: this.id,
         username: this.username,

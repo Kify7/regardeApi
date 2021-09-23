@@ -9,11 +9,17 @@ const MovieSchema = new mongoose.Schema({
     cast: [String],
     poster: {type: String},
     description: {type: String, require: true},
-    ranking: {type: Number, min: 0, max: 5},
-    trailer: {type: String}
+    rate: {type: Number, min: 0, max: 5},
+    trailer: { type: String },
+    comments: [
+        {
+            type: mongoose.Schema.Types.ObjectId, ref: 'Comment', autopopulate: true
+        }
+    ]
 }, { collection: 'movies', timestamps: true })
+MovieSchema.plugin(require('mongoose-autopopulate'));
 
-MovieSchema.methods.publicData = () => {
+MovieSchema.methods.publicData = function() {
     return {
         id: this.id,
         title: this.title,
@@ -23,39 +29,9 @@ MovieSchema.methods.publicData = () => {
         cast: this.cast,
         poster: this.poster,
         description: this.description,
-        ranking: this.ranking,
+        rate: this.rate,
         trailer: this.trailer
     }
 }
 
 mongoose.model('Movie', MovieSchema)
-
-// class Movie {
-//     constructor(
-//         id,
-//         title,
-//         genres = [],
-//         year,
-//         directors = [],
-//         cast = [],
-//         poster,
-//         description,
-//         ranking,
-//         comments = [],
-//         trailer
-//     ) {
-//         this.id = id;
-//         this.title = title;
-//         this.genres = genres;
-//         this.year = year;
-//         this.directors = directors;
-//         this.cast = cast;
-//         this.poster = poster;
-//         this.description = description;
-//         this.ranking = ranking;
-//         this.comments = comments;
-//         this.trailer = trailer;
-//     }
-// };
-
-// module.exports = Movie;
