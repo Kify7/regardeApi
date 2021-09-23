@@ -25,7 +25,7 @@ const UserSchema = new mongoose.Schema({
         match: [/\S+@\S+\.\S+/, "es inválido"],
         index: true,
     },
-    tipo: {
+    type: {
         type: String,
         enum: ['user', 'admin']
     },
@@ -77,9 +77,9 @@ UserSchema.methods.publicData = function () {
         id: this.id,
         username: this.username,
         email: this.email,
-        nombre: this.nombre,
-        apellido: this.apellido,
-        tipo: this.tipo,
+        name: this.nombre,
+        lastname: this.apellido,
+        type: this.tipo,
         createdAt: this.createdAt,
         updatedAt: this.updatedAt
     }
