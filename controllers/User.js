@@ -19,14 +19,16 @@ function createUser(req, res, next) {
 
 function getUser(req, res, next) {
     if (req.params.id) {
-        User.findById(req.user.id)
+        User.findById(req.params.id)
             .then(user => {
                 if (!user) {
                     return res.sendStatus(401)
                 }
                 return res.json(user.publicData())
             })
-            .catch(next)
+            .catch(next => {
+                return res.send('Usuario no encontrado')
+            })
     } else {
         User.find()
             .then(users => {
