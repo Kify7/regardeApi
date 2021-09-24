@@ -26,7 +26,6 @@ mongoose.connect(process.env.DB_CONNECTION, {
 mongoose.set("debug", true);
 
 require('./models/User');
-require('./models/Admin');
 require('./models/Movie')
 require('./models/Comment')
 require('./config/passport')
