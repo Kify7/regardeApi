@@ -12,7 +12,7 @@ function createUser(req, res, next) {
     newUser.createPassword(password)
     newUser.save()
         .then(user => {
-            return res.status(200).json(user.toAuthJSON())
+            return res.status(200).json(user.toAuthUserJSON())
         })
         .catch(next)
 }
@@ -89,7 +89,7 @@ function logIn(req, res, next) {
             if (err) { return next(err) }
             if (user) {
                 user.token = user.generateJWT()
-                return res.json({ user: user.toAuthJSON() })
+                return res.json({ user: user.toAuthUserJSON() })
             }
             else {
                 return res.status(422).json(info)

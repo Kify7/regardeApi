@@ -7,7 +7,7 @@ const {
     deleteUser,
     logIn
 } = require('../controllers/user')
-const auth=require('./auth')
+const auth = require('./auth')
 
 router.post('/', createUser)
 router.post('/login', logIn)

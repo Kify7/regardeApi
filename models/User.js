@@ -68,8 +68,9 @@ UserSchema.methods.generateJWT = function () {
     }, secret)
 }
 
-UserSchema.methods.toAuthJSON = function () {
+UserSchema.methods.toAuthUserJSON = function () {
     return {
+        id: this._id,
         username: this.username,
         email: this.email,
         token: this.generateJWT()
@@ -88,6 +89,5 @@ UserSchema.methods.publicData = function () {
         updatedAt: this.updatedAt
     }
 }
-
 
 mongoose.model("User", UserSchema);
