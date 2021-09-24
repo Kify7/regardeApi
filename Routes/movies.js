@@ -5,14 +5,15 @@ const {
     updateMovie,
     deleteMovie
 } = require('../controllers/movies')
+const auth = require('./auth')
 
-router.post('/', createMovie)
+router.post('/', auth.required, createMovie)
 
 //Estas dos líneas de código las dejamos, las otras las modificamos para ADMIN y USER
 router.get('/:id', getMovie)
 router.get('/', getMovie)
 
-router.put('/:id', updateMovie)
-router.delete('/:id', deleteMovie)
+router.put('/:id', auth.required, updateMovie)
+router.delete('/:id', auth.required, deleteMovie)
 
 module.exports = router;
