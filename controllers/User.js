@@ -120,10 +120,30 @@ function logIn(req, res, next) {
         })(req, res, next)
 }
 
+async function addToFavorites(req, res, next) {
+    const id = req.params.id
+    const { movie } = req.body
+    const favoritesupdated = await User.findByIdAndUpdate(id, {
+        $push: { favorites: movie }
+    })
+    res.send('Se agregó a la lista de favoritos')
+}
+
+async function removeFromFavorites(req, res, next) {
+    const id = req.params.id
+    const { movie } = req.body
+    const favoritesupdated = await User.findByIdAndUpdate(id, {
+        $pull: { favorites: movie }
+    })
+    res.send('Se eliminó de la lista de favoritos')
+}
+
 module.exports = {
     createUser,
     getUser,
     updateUser,
     deleteUser,
-    logIn
+    logIn,
+    addToFavorites,
+    removeFromFavorites
 }

@@ -9,6 +9,7 @@ async function createComment(req, res, next) {
         return res.send('No está autorizado')
     }
     let comment = req.body
+    const user = await User.findById(comment.userId)
     const movie = await Movie.findById(comment.movieId)
 
     const newComment = new Comment(comment)
@@ -17,6 +18,8 @@ async function createComment(req, res, next) {
         const savedComment = await newComment.save()
         movie.comments = movie.comments.concat(savedComment._id)
         movie.save()
+        user.comments = user.comments.concat(savedComment._id)
+        user.save()
 
         res.json(savedComment)
     }
