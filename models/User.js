@@ -97,6 +97,8 @@ UserSchema.methods.publicData = function () {
         name: this.name,
         lastname: this.lastname,
         type: this.type,
+        favorites: this.favorites,
+        comments: this.comments,
         createdAt: this.createdAt,
         updatedAt: this.updatedAt
     }
