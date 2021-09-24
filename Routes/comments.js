@@ -5,10 +5,12 @@ const {
     updateComment,
     deleteComment
 } = require('../controllers/comments')
+const auth=require('./auth')
 
-router.post('/', createComment)
+router.post('/', auth.required, createComment)
+router.get('/:id', getComment)
 router.get('/', getComment)
-router.put('/:id', updateComment)
-router.delete('/:id', deleteComment)
+router.put('/:id', auth.required, updateComment)
+router.delete('/:id', auth.required, deleteComment)
 
 module.exports = router;

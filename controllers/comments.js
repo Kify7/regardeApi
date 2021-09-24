@@ -2,8 +2,12 @@ const { request } = require('express')
 const mongoose = require('mongoose')
 const Comment = mongoose.model('Comment')
 const Movie = mongoose.model('Movie')
+const User = mongoose.model('User')
 
 async function createComment(req, res, next) {
+    if (req.user.type !== "admin" && req.user.type !== "user") {
+        return res.send('No está autorizado')
+    }
     let comment = req.body
     const movie = await Movie.findById(comment.movieId)
 
@@ -41,12 +45,15 @@ function getComment(req, res, next) {
 
 function updateComment(req, res, next) {
     Comment.findById(req.params.id)
-        .then(comment => {
+        .then(comment => {            
             if (!comment)
                 return res.sendStatus(401)
+            if (req.user.id != comment.userId) {
+                return res.send('No se puede editar otro comentario que no sea el tuyo')
+            }
             let newInfo = req.body
-            if (typeof newInfo.userId !== 'undefined')
-                comment.userId = newInfo.userId
+            // if (typeof newInfo.userId !== 'undefined')
+            //     comment.userId = newInfo.userId
             if (typeof newInfo.movieId !== 'undefined')
                 comment.movieId = newInfo.movieId
             if (typeof newInfo.text !== 'undefined')
@@ -61,11 +68,33 @@ function updateComment(req, res, next) {
 }
 
 function deleteComment(req, res, next) {
-    Comment.findOneAndDelete({ _id: req.params.id })
-        .then(r => {
-            res.status(200).send('La solicitud se elimino')
+    if (req.user.type !== "admin" && req.user.type !== "user") {
+        return res.send('No se puede borrar el comentario').Status(401)
+    }
+    if (req.user.type === "admin") {
+        Comment.findOneAndDelete({ _id: req.params.id })
+            .then(r => {
+            res.status(200).send('El comentario se elimino')
         })
-        .catch(next)
+            .catch(next)
+    }
+    else {
+        Comment.findById(req.params.id)
+            .then(comment => {
+                if (req.user.id != comment.userId) {
+                    return res.send('No se puede eliminar otro comentario que no sea el tuyo')
+                }
+                else {
+                    Comment.findOneAndDelete({ _id: req.params.id })
+                        .then(r => {
+                            res.status(200).send('El comentario se elimino')
+                        })
+                        .catch(next)
+                }
+            })
+            .catch(next)
+        
+    }
 }
 
 module.exports = {

@@ -2,10 +2,9 @@
 const mongoose = require('mongoose')
 
 const CommentSchema = new mongoose.Schema({
-    userId: String,
-    // userId: {
-    //     type: mongoose.Schema.Types.ObjectId, ref: 'User'
-    // },
+    userId: {
+        type: mongoose.Schema.Types.ObjectId, ref: 'User'
+    },
     movieId: {
         type: mongoose.Schema.Types.ObjectId, ref: 'Movie'
     },
