@@ -5,7 +5,7 @@ const passport = require('passport')
 function createUser(req, res, next) {
     const body = req.body,
         password = body.password
-    
+
     delete body.password
     const newUser = new User(body)
 
@@ -27,20 +27,21 @@ function getUser(req, res, next) {
                 return res.json(user.publicData())
             })
             .catch(next)
-    }
-    else {
+    } else {
         User.find()
             .then(users => {
                 res.send(users)
             })
             .catch(next)
     }
-    
+
 }
 
 function updateUser(req, res, next) {
     User.findById(req.user.id).then(user => {
-        if (!user) { return res.sendStatus(401) }
+        if (!user) {
+            return res.sendStatus(401)
+        }
         let newInfo = req.body
         if (typeof newInfo.username !== 'undefined')
             user.username = newInfo.username
@@ -67,26 +68,39 @@ function updateUser(req, res, next) {
 }
 
 function deleteUser(req, res, next) {
-    User.findOneAndDelete({ _id: req.user.id })
+    User.findOneAndDelete({
+            _id: req.user.id
+        })
         .then(r => {
-        res.status(200).send('Usuario eliminado')
+            res.status(200).send('Usuario eliminado')
         })
         .catch(next)
 }
 
 function logIn(req, res, next) {
     if (!req.body.email) {
-        return res.status(422).json({ error: { email: 'Falta información' } })
+        return res.status(422).json({
+            error: {
+                email: 'Falta información'
+            }
+        })
     }
 
     if (!req.body.password) {
-        return res.status(422).json({ error: { password: "No puede estar vacío" } })
+        return res.status(422).json({
+            error: {
+                password: "No puede estar vacío"
+            }
+        })
     }
-    
-    passport.authenticate('user-login',
-        { session: false },
+
+    passport.authenticate('user-login', {
+            session: false
+        },
         function (err, user, info) {
-            if (err) { return next(err) }
+            if (err) {
+                return next(err)
+            }
             if (user) {
                 user.token = user.generateJWT()
                 return res.json({ user: user.toAuthUserJSON() })
