@@ -115,10 +115,15 @@ function logIn(req, res, next) {
         })(req, res, next)
 }
 
+function addToFavorites(req, res, next) {
+    
+}
+
 module.exports = {
     createUser,
     getUser,
     updateUser,
     deleteUser,
-    logIn
+    logIn,
+    addToFavorites
 }

@@ -33,6 +33,16 @@ const UserSchema = new mongoose.Schema({
         type: String,
         enum: ['user', 'admin']
     },
+    comments: [
+        {
+            type: mongoose.Schema.Types.ObjectId, ref: 'Comment', autopopulate: true
+        }
+    ],
+    favorites: [
+        {
+            type: mongoose.Schema.Types.ObjectId, ref: 'Movie', autopopulate: true
+        }
+    ],
     hash: String,
     salt: String,
 }, {
@@ -43,6 +53,8 @@ const UserSchema = new mongoose.Schema({
 UserSchema.plugin(uniqueValidator, {
     message: "Ya existe"
 })
+
+UserSchema.plugin(require('mongoose-autopopulate'));
 
 UserSchema.methods.createPassword = function (password) {
     this.salt = crypto.randomBytes(16).toString('hex');
