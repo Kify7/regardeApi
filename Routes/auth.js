@@ -21,8 +21,7 @@ const auth = {
         userProperty: 'user',
         credentialsRequired: false,
         getToken: getTokenFromHeader
-    }
-    )
+    })
 }
 
 module.exports = auth
