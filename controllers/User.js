@@ -18,65 +18,70 @@ function createUser(req, res, next) {
 }
 
 function getUser(req, res, next) {
-    if (req.params.id) {
+    if (req.user.type === "admin") {
+        if (req.params.id) {
+            User.findById(req.params.id)
+                .then(user => res.json(user.publicData()))
+                .catch(next => res.send('Usuario no encontrado'))
+        } else {
+            User.find().then(users => res.send(users))
+                .catch(next)
+        }
+    } else if (req.params.id === req.user.id) {
         User.findById(req.params.id)
-            .then(user => {
-                if (!user) {
-                    return res.sendStatus(401)
-                }
-                return res.json(user.publicData())
-            })
-            .catch(next => {
-                return res.send('Usuario no encontrado')
-            })
+            .then(user => res.json(user.publicData()))
+            .catch(next => res.send('Usuario no encontrado'))
     } else {
-        User.find()
-            .then(users => {
-                res.send(users)
-            })
-            .catch(next)
+        return res.sendStatus(401)
     }
-
 }
 
 function updateUser(req, res, next) {
-    User.findById(req.user.id).then(user => {
-        if (!user) {
-            return res.sendStatus(401)
-        }
-        let newInfo = req.body
-        if (typeof newInfo.username !== 'undefined')
-            user.username = newInfo.username
+    if (req.params.id === req.user.id) {
+        User.findById(req.user.id).then(user => {
+            if (!user) {
+                return res.sendStatus(401)
+            }
+            let newInfo = req.body
+            if (typeof newInfo.username !== 'undefined')
+                user.username = newInfo.username
 
-        if (typeof newInfo.name !== 'undefined')
-            user.name = newInfo.name
+            if (typeof newInfo.name !== 'undefined')
+                user.name = newInfo.name
 
-        if (typeof newInfo.lastname !== 'undefined')
-            user.lastname = newInfo.lastname
+            if (typeof newInfo.lastname !== 'undefined')
+                user.lastname = newInfo.lastname
 
-        if (typeof newInfo.email !== 'undefined')
-            user.email = newInfo.email
+            if (typeof newInfo.email !== 'undefined')
+                user.email = newInfo.email
 
-        if (typeof newInfo.type !== 'undefined')
-            user.type = newInfo.type
+            if (typeof newInfo.type !== 'undefined')
+                user.type = newInfo.type
 
-        if (typeof newInfo.password !== 'undefined')
-            user.createPassword(newInfo.password)
+            if (typeof newInfo.password !== 'undefined')
+                user.createPassword(newInfo.password)
 
-        user.save().then(updatedUser => {
-            res.status(201).json(updatedUser.publicData())
+            user.save().then(updatedUser => {
+                res.status(201).json(updatedUser.publicData())
+            }).catch(next)
         }).catch(next)
-    }).catch(next)
+    } else {
+        return res.sendStatus(401)
+    }
 }
 
 function deleteUser(req, res, next) {
-    User.findOneAndDelete({
-            _id: req.user.id
-        })
-        .then(r => {
-            res.status(200).send('Usuario eliminado')
-        })
-        .catch(next)
+    if (req.params.id === req.user.id || req.user.type === "admin") {
+        User.findOneAndDelete({
+                _id: req.user.id
+            })
+            .then(r => {
+                res.status(200).send('Usuario eliminado')
+            })
+            .catch(next)
+    } else {
+        return res.sendStatus(401)
+    }
 }
 
 function logIn(req, res, next) {
