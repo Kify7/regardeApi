@@ -121,21 +121,50 @@ function logIn(req, res, next) {
 }
 
 async function addToFavorites(req, res, next) {
-    const id = req.params.id
+    const id = req.user.id
     const { movie } = req.body
-    const favoritesupdated = await User.findByIdAndUpdate(id, {
-        $push: { favorites: movie }
-    })
-    res.send('Se agregó a la lista de favoritos')
+    if (req.params.id != id) {
+        return res.send('Error')
+    }
+    const existe = await User.findOne({ favorites: movie })
+    console.log(existe);
+    if (existe) {
+        return res.send('Ya estaba en la lista de favoritos')
+    }
+
+    try {
+        const favoritesupdated = await User.findByIdAndUpdate(id, {
+            $push: { favorites: movie }
+        })
+        res.send('Se agregó a la lista de favoritos')
+    } catch (next) {
+        next(error => {
+            return res.send('No se puede agregar a favoritos')
+        })
+    }
+    
 }
 
 async function removeFromFavorites(req, res, next) {
-    const id = req.params.id
+    const id = req.user.id
     const { movie } = req.body
-    const favoritesupdated = await User.findByIdAndUpdate(id, {
-        $pull: { favorites: movie }
-    })
-    res.send('Se eliminó de la lista de favoritos')
+    if (req.params.id != id) {
+        return res.send('Error')
+    }
+    const existe = await User.findOne({ favorites: movie })
+    if (!existe) {
+        return res.send('La película no se encuentraba en favoritos')
+    }
+    try {
+        const favoritesupdated = await User.findByIdAndUpdate(id, {
+            $pull: { favorites: movie }
+        })
+        res.send('Se eliminó de la lista de favoritos')
+    } catch (next) {
+        next(error => {
+            return res.send('No se puede eliminar de favoritos')
+        })
+    }
 }
 
 module.exports = {

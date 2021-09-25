@@ -9,7 +9,6 @@ const auth = require('./auth')
 
 router.post('/', auth.required, createMovie)
 
-//Estas dos líneas de código las dejamos, las otras las modificamos para ADMIN y USER
 router.get('/:id', getMovie)
 router.get('/', getMovie)
 
