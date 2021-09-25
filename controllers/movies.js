@@ -1,12 +1,15 @@
-// const Movie = require('../models/Movie')
 const mongoose = require('mongoose')
 const Movie = mongoose.model('Movie')
+// const Comment = mongoose.model('Comment')
 
 function createMovie(req, res, next) {
+    if (req.user.type !== "admin") {
+        return res.sendStatus(401)
+    }
     var movie = new Movie(req.body)
     movie.save()
         .then(movie => {
-        res.status(200).send(movie)
+            res.status(200).send(movie)
         })
         .catch(next)
 }
@@ -18,8 +21,7 @@ function getMovie(req, res, next) {
                 res.send(movie)
             })
             .catch(next)
-    }
-    else {
+    } else {
         Movie.find()
             .then(movies => {
                 res.send(movies)
@@ -28,8 +30,10 @@ function getMovie(req, res, next) {
     }
 }
 
-
 function updateMovie(req, res, next) {
+    if (req.user.type !== "admin") {
+        return res.sendStatus(401)
+    }
     Movie.findById(req.params.id)
         .then(movie => {
             if (!movie)
@@ -63,13 +67,16 @@ function updateMovie(req, res, next) {
 }
 
 function deleteMovie(req, res, next) {
-    Movie.findOneAndDelete({ _id: req.params.id })
+    if (req.user.type !== "admin") {
+        return res.sendStatus(401)
+    }
+    Movie.findOneAndDelete({
+            _id: req.params.id
+        })
         .then(deleted => {
             res.status(200).send('The movie was deleted.')
         })
         .catch(next)
-    
-
 }
 
 module.exports = {

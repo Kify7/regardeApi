@@ -6,9 +6,8 @@ router.get('/', (req, res) => {
 });
 
 
-router.use('/admin', require('./admin'));
+router.use('/user', require('./user'));
 router.use('/movies', require('./movies'));
 router.use('/comments', require('./comments'));
-router.use('/user', require('./user'));
 
 module.exports = router;

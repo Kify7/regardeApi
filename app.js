@@ -10,8 +10,13 @@ app.use(bodyParser.json());
 
 //conecction db
 const mongoose = require('mongoose');
-
-mongoose.connect(process.env.DB_CONNECTION, {})
+console.log(process.env.DB_CONNECTION)
+mongoose.connect(process.env.DB_CONNECTION, {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+        useFindAndModify: false,
+        useCreateIndex: true
+    })
     .then(res => {
         console.log('Connected to database ' + res.connections[0].name + ' ...');
     }).catch(err => {
@@ -20,8 +25,10 @@ mongoose.connect(process.env.DB_CONNECTION, {})
 
 mongoose.set("debug", true);
 
-require('./models/Admin');
+require('./models/User');
 require('./models/Movie')
+require('./models/Comment')
+require('./config/passport')
 
 
 app.use('/v1', require('./routes'));

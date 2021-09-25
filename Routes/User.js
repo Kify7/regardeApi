@@ -73,6 +73,7 @@ const auth=require('./auth')
  *                  description: Internal server error
  */
 
+router.post('/login', logIn)
 router.post('/', createUser)
 
 /**
