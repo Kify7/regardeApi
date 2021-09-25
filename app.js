@@ -31,7 +31,7 @@ require('./models/Comment')
 require('./config/passport')
 
 
-app.use('/v1', require('./routes'));
+app.use('/v1', require('./Routes'));
 
 const PORT = process.env.PORT;
 app.listen(PORT, () => {

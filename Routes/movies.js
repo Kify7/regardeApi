@@ -4,15 +4,19 @@ const {
     getMovie,
     updateMovie,
     deleteMovie,
-    getMovieByCategory,
-    getMovieByTitle,
-    getTop5,
-    getRecents
+    moviebyName
 } = require('../controllers/movies')
 const auth = require('./auth')
 
 router.post('/', auth.required, createMovie)
 
+router.get('/byName/:name', moviebyName)
+router.get('/byName', function (req, res) {
+    return res.sendStatus(404)
+})
+
+
+router.get('/:id', getMovie)
 router.get('/', getMovie)
 router.get('/top5', getTop5)
 router.get('/recents', getRecents)
