@@ -1,10 +1,7 @@
-// const Movie = require('../models/Movie')
 const mongoose = require('mongoose')
 const Movie = mongoose.model('Movie')
 // const Comment = mongoose.model('Comment')
 
-//Moverse a controlador admin
-//---------------------------------------------------------------------
 function createMovie(req, res, next) {
     if (req.user.type !== "admin") {
         return res.sendStatus(401)
@@ -16,9 +13,7 @@ function createMovie(req, res, next) {
         })
         .catch(next)
 }
-//---------------------------------------------------------------------
 
-//Esta función la dejamos pública
 function getMovie(req, res, next) {
     if (req.params.id) {
         Movie.findById(req.params.id)
@@ -35,8 +30,6 @@ function getMovie(req, res, next) {
     }
 }
 
-//Moverse a controlador admin
-//---------------------------------------------------------------------
 function updateMovie(req, res, next) {
     if (req.user.type !== "admin") {
         return res.sendStatus(401)
@@ -72,10 +65,7 @@ function updateMovie(req, res, next) {
         })
         .catch(next)
 }
-//---------------------------------------------------------------------
 
-//Moverse a controlador admin
-//---------------------------------------------------------------------
 function deleteMovie(req, res, next) {
     if (req.user.type !== "admin") {
         return res.sendStatus(401)
@@ -95,4 +85,3 @@ module.exports = {
     updateMovie,
     deleteMovie
 }
-//---------------------------------------------------------------------

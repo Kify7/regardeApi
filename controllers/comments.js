@@ -11,10 +11,11 @@ async function createComment(req, res, next) {
         return res.send('No está autorizado')
     }
     let comment = req.body
-    const user = await User.findById(comment.userId)
+    const user = await User.findById(req.user.id)
     const movie = await Movie.findById(comment.movieId)
 
     const newComment = new Comment(comment)
+    newComment.userId = user.id
 
     try {
         const savedComment = await newComment.save()
@@ -55,10 +56,6 @@ function updateComment(req, res, next) {
                 return res.send('No se puede editar otro comentario que no sea el tuyo')
             }
             let newInfo = req.body
-            // if (typeof newInfo.userId !== 'undefined')
-            //     comment.userId = newInfo.userId
-            // if (typeof newInfo.movieId !== 'undefined')
-            //     comment.movieId = newInfo.movieId
             if (typeof newInfo.text !== 'undefined')
                 comment.text = newInfo.text
             comment.save()
