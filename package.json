@@ -36,6 +36,8 @@
         "mongoose-unique-validator": "^2.0.3",
         "nodemon": "^2.0.12",
         "passport": "^0.4.1",
-        "passport-local": "^1.0.0"
+        "passport-local": "^1.0.0",
+        "swagger-jsdoc": "^6.1.0",
+        "swagger-ui-express": "^4.1.6"
     }
 }
