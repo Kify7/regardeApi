@@ -79,9 +79,20 @@ function deleteMovie(req, res, next) {
         .catch(next)
 }
 
+function getMovieByCategory(req,res,next){
+    var category = req.params.genres
+    Movie.find({
+        genres: category
+    }) .then(r =>{
+          res.status(200).send(r)
+      })
+      .catch(next)
+}
+
 module.exports = {
     createMovie,
     getMovie,
     updateMovie,
-    deleteMovie
+    deleteMovie,
+    getMovieByCategory
 }
