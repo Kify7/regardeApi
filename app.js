@@ -1,6 +1,9 @@
 const express = require('express');
 const app = express();
 require('dotenv').config();
+const swaggerUi = require('swagger-ui-express');
+const swaggerJsDoc = require('swagger-jsdoc');
+const PORT = process.env.PORT;
 
 const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({
@@ -8,7 +11,25 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(bodyParser.json());
 
-//conecction db
+const options = {
+    definition: {
+        openapi: '3.0.0',
+        info: {
+            title: 'Regarde API',
+            version: '1.0.0',
+            description: 'Regarde API Documentation',
+        },
+        servers: [{
+            url: `http://localhost:${ PORT }/v1`,
+        }]
+    },
+    apis: ["./Routes/*.js"]
+}
+
+const specs = swaggerJsDoc(options);
+app.use('/docs', swaggerUi.serve, swaggerUi.setup(specs));
+
+//connection db
 const mongoose = require('mongoose');
 console.log(process.env.DB_CONNECTION)
 mongoose.connect(process.env.DB_CONNECTION, {
@@ -33,7 +54,6 @@ require('./config/passport')
 
 app.use('/v1', require('./Routes'));
 
-const PORT = process.env.PORT;
 app.listen(PORT, () => {
     console.log(`Server listening on port ${PORT}`);
 });
