@@ -89,10 +89,64 @@ function getMovieByCategory(req,res,next){
       .catch(next)
 }
 
+function getMovieByTitle(req,res,next){
+    var title = req.params.title
+    Movie.find({
+        title : title
+    }) .then(r =>{
+          res.status(200).send(r)
+      })
+      .catch(next)
+}
+
+function getTop5(req,res,next){
+    req.body
+    Movie.aggregate([
+        {
+          '$sort': {
+            'rate': -1
+          }
+        }, {
+          '$limit': 5
+        }, {
+          '$project': {
+            'title': 1, 
+            'year': 1, 
+            '_id': 0
+          }
+        }
+      ]) .then(r =>{
+          res.status(200).send(r)
+      }).catch(next)
+}
+
+function getRecents(req,res,next){
+    req.body
+    Movie.aggregate([
+        {
+          '$project': {
+            'title': 1, 
+            'year': 1
+          }
+        }, {
+          '$sort': {
+            'year': -1
+          }
+        }, {
+          '$limit': 5
+        }
+      ]) .then(r =>{
+          res.status(200).send(r)
+      }).catch(next)
+}
+
 module.exports = {
     createMovie,
     getMovie,
     updateMovie,
     deleteMovie,
-    getMovieByCategory
+    getMovieByCategory,
+    getMovieByTitle,
+    getTop5,
+    getRecents
 }
