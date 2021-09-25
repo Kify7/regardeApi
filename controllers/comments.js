@@ -1,4 +1,6 @@
-const { request } = require('express')
+const {
+    request
+} = require('express')
 const mongoose = require('mongoose')
 const Comment = mongoose.model('Comment')
 const Movie = mongoose.model('Movie')
@@ -22,8 +24,7 @@ async function createComment(req, res, next) {
         user.save()
 
         res.json(savedComment)
-    }
-    catch (error) {
+    } catch (error) {
         next(error)
     }
 }
@@ -35,8 +36,7 @@ function getComment(req, res, next) {
                 res.send(comment)
             })
             .catch(next)
-    }
-    else {
+    } else {
         Comment.find()
             .then(comment => {
                 res.send(comment)
@@ -48,7 +48,7 @@ function getComment(req, res, next) {
 
 function updateComment(req, res, next) {
     Comment.findById(req.params.id)
-        .then(comment => {            
+        .then(comment => {
             if (!comment)
                 return res.sendStatus(401)
             if (req.user.id != comment.userId) {
@@ -72,22 +72,24 @@ function updateComment(req, res, next) {
 
 function deleteComment(req, res, next) {
     if (req.user.type === "admin") {
-        Comment.findOneAndDelete({ _id: req.params.id })
+        Comment.findOneAndDelete({
+                _id: req.params.id
+            })
             .then(r => {
-            res.status(200).send('El comentario se elimino')
+                res.status(200).send('El comentario se elimino')
             })
             .catch(next => {
                 res.send('No se encontró ningun comentario con ese id')
             })
-    }
-    else {
+    } else {
         Comment.findById(req.params.id)
             .then(comment => {
                 if (req.user.id != comment.userId) {
                     return res.send('No se puede eliminar otro comentario que no sea el tuyo')
-                }
-                else {
-                    Comment.findOneAndDelete({ _id: req.params.id })
+                } else {
+                    Comment.findOneAndDelete({
+                            _id: req.params.id
+                        })
                         .then(r => {
                             res.status(200).send('El comentario se elimino')
                         })
@@ -99,13 +101,38 @@ function deleteComment(req, res, next) {
             .catch(next => {
                 res.send('No se encontró ningun comentario con ese id')
             })
-        
+
     }
 }
+
+function commentsbyUser(req, res, next) {
+    var user = req.params.id
+
+    console.log(req.params.id)
+    Comment.find({
+            userId: user
+        })
+        .then(comment => {
+            res.send(comment)
+        }).catch(next)
+}
+
+function commentsofMovie(req, res, next) {
+    var movie = req.params.id
+    Comment.find({
+            movieId: movie
+        })
+        .then(comment => {
+            res.send(comment)
+        }).catch(next)
+}
+
 
 module.exports = {
     createComment,
     getComment,
     updateComment,
-    deleteComment
+    deleteComment,
+    commentsbyUser,
+    commentsofMovie
 }
