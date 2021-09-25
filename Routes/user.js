@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const { createUser, getUser, updateUser, deleteUser, logIn, addToFavorites, removeFromFavorites } = require('../controllers/user')
-const auth=require('./auth')
+const auth = require('./auth')
 
 /**
  *  @swagger

@@ -30,6 +30,18 @@ function getMovie(req, res, next) {
     }
 }
 
+function moviebyName(req, res, next) {
+    var movieName = req.params.name
+    console.log(req)
+    Movie.find({
+            title: movieName
+        })
+        .then(movie => {
+            console.log(movie)
+            res.send(movie)
+        }).catch(next)
+}
+
 function updateMovie(req, res, next) {
     if (req.user.type !== "admin") {
         return res.sendStatus(401)
@@ -83,5 +95,6 @@ module.exports = {
     createMovie,
     getMovie,
     updateMovie,
-    deleteMovie
+    deleteMovie,
+    moviebyName
 }
