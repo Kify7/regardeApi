@@ -4,7 +4,10 @@ const {
     getMovie,
     updateMovie,
     deleteMovie,
-    moviebyName
+    moviebyName,
+    getTop5,
+    getRecents,
+    movieByCategory
 } = require('../controllers/movies')
 const auth = require('./auth')
 
@@ -20,8 +23,8 @@ router.get('/:id', getMovie)
 router.get('/', getMovie)
 router.get('/top5', getTop5)
 router.get('/recents', getRecents)
-router.get('/group/:category', getMovieByCategory)
-router.get('/group/:title', getMovieByTitle)
+router.get('/group/:category', movieByCategory)
+router.get('/group/:title', moviebyName)
 router.get('/:id', getMovie)
 
 

@@ -91,20 +91,10 @@ function deleteMovie(req, res, next) {
         .catch(next)
 }
 
-function getMovieByCategory(req,res,next){
+function movieByCategory(req,res,next){
     var category = req.params.genres
     Movie.find({
         genres: category
-    }) .then(r =>{
-          res.status(200).send(r)
-      })
-      .catch(next)
-}
-
-function getMovieByTitle(req,res,next){
-    var title = req.params.title
-    Movie.find({
-        title : title
     }) .then(r =>{
           res.status(200).send(r)
       })
@@ -157,5 +147,8 @@ module.exports = {
     getMovie,
     updateMovie,
     deleteMovie,
-    moviebyName
+    moviebyName,
+    movieByCategory,
+    getTop5,
+    getRecents
 }
