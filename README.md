@@ -54,7 +54,7 @@ Development Environment
 npm run dev
 ```
 
-## Produción
+## Producción
 * [Regarde Api](https://regardapi.herokuapp.com/v1/) 
 
 
