@@ -20,7 +20,8 @@ const options = {
             description: 'Regarde API Documentation',
         },
         servers: [{
-            url: `http://localhost:${ PORT }/v1`,
+            url: `http://localhost:${PORT}/v1`,
+            url: `https://regardapi.herokuapp.com//v1`,
         }]
     },
     apis: ["./Routes/*.js"]
