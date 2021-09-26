@@ -150,11 +150,11 @@ module.exports = router;
  *             - bearerAuth: []
  *          parameters:
  *              - in: path
- *                name: id
+ *                name: Admin ID
  *                schema:
  *                  type: string
  *                required: true
- *                description: Get a user by id
+ *                description: Admin ID
  *          responses:
  *              200:
  *                  description: Successfully retrieved a user
@@ -181,7 +181,7 @@ module.exports = router;
  *      get:
  *          tags: [User]
  *          summary: Get all users
- *          description: Get all users
+ *          description: Get all users with an administrator account
  *          security:
  *             - bearerAuth: []
  *          responses:
