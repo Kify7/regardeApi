@@ -2,6 +2,24 @@ const router = require('express').Router();
 const { createUser, getUser, updateUser, deleteUser, logIn, addToFavorites, removeFromFavorites } = require('../controllers/user')
 const auth = require('./auth')
 
+router.post('/login', logIn)
+router.post('/', createUser)
+router.get('/:id', auth.required, getUser)
+
+router.get('/', auth.required, getUser)
+router.put('/add-to-favorites/:id', auth.required, addToFavorites)
+router.put('/add-to-favorites', function (req, res) {
+    return res.sendStatus(404)
+})
+router.put('/remove-from-favorites/:id', auth.required, removeFromFavorites)
+router.put('/remove-from-favorites', function (req, res) {
+    return res.sendStatus(404)
+})
+router.put('/:id', auth.required, updateUser)
+router.delete('/:id', auth.required, deleteUser)
+
+module.exports = router;
+
 /**
  *  @swagger
  *  components:
@@ -14,6 +32,7 @@ const auth = require('./auth')
  *                  - lastname
  *                  - email
  *                  - password
+ *                  - type
  *              properties:
  *                  username:
  *                      type: string
@@ -30,17 +49,21 @@ const auth = require('./auth')
  *                  password:
  *                      type: string
  *                      description: Password of the user
+ *                  type:
+ *                      type: string
+ *                      description: It can be 'admin' or 'user'
  *              example:
  *                  username: johndoe
  *                  name: John
  *                  lastname: Doe
  *                  email: johndoe@gmail.com
  *                  password: password
- *          securitySchemes:
- *              bearerAuth:
- *                  type: http
- *                  scheme: bearer
- *                  bearerFormat: JWT
+ *                  type: user
+ *      securitySchemes:
+ *          bearerAuth:
+ *              type: http
+ *              scheme: bearer
+ *              bearerFormat: JWT
  */
 
 /**
@@ -54,8 +77,14 @@ const auth = require('./auth')
  *  @swagger
  *  /user:
  *      post:
- *          summary: Create a new user
  *          tags: [User]
+ *          summary: Create a new user
+ *          operationId: addUser
+ *          description: Add a new user to the system
+ *          consumes:
+ *              - application/json
+ *          produces:
+ *              - application/json 
  *          requestBody:
  *              required: true
  *              content:
@@ -73,21 +102,27 @@ const auth = require('./auth')
  *                  description: Internal server error
  */
 
-router.post('/login', logIn)
-router.post('/', createUser)
 
 /**
  *  @swagger
  *  /user/login:
  *      post:
- *          summary: Login a user
  *          tags: [User]
+ *          summary: Log in a user
+ *          operationId: logInUser
+ *          description: Log in a user to the system
+ *          produces:
+ *              - application/json
  *          requestBody:
  *              required: true
  *              content:
  *                  application/json:
  *                      schema:
  *                          $ref: '#/components/schemas/User'
+ *                      example:
+ *                          email: johndoe@gmail.com
+ *                          password: password
+ * 
  *          responses:
  *              200:
  *                  description: Successfully logged in
@@ -95,20 +130,22 @@ router.post('/', createUser)
  *                      application/json:
  *                          schema:
  *                              $ref: '#/components/schemas/User'
+ *                          example:
+ *                              email: johndoe@gmail.com
+ *                              password: password
+ *                              token: dfadsf2asd8a1sd5f1a5sd1f5ads4f5a1sdf
  *              422:
  *                  description: Invalid username or password
  *              500:
  *                  description: Internal server error
  */
 
-router.post('/login', logIn)
-
 /**
  *  @swagger
  *  /user/{id}:
  *      get:
- *          summary: Get a user
  *          tags: [User]
+ *          summary: Get a user by id
  *          security:
  *             - bearerAuth: []
  *          parameters:
@@ -121,21 +158,53 @@ router.post('/login', logIn)
  *          responses:
  *              200:
  *                  description: Successfully retrieved a user
- *                  
- *                      
+ *                  content: 
+ *                      application/json:
+ *                          schema:
+ *                              $ref: '#/components/schemas/User'
+ *                          example:
+ *                              id: 614e1de21478556d787c9694
+ *                              username: johndoe
+ *                              name: John
+ *                              lastname: Doe
+ *                              email: johndoe@gmail.com
+ *                              type: user
+ *                              favorites: []
+ *                              comments: []
+ *                              createdAt: 2021-09-24T18:50:10.162Z
+ *                              updatedAt: 2021-09-24T18:50:10.162Z
  */
 
-router.get('/:id', auth.required, getUser)
-router.get('/', auth.required, getUser)
-router.put('/add-to-favorites/:id', auth.required, addToFavorites)
-router.put('/add-to-favorites', function (req, res) {
-    return res.sendStatus(404)
-})
-router.put('/remove-from-favorites/:id', auth.required, removeFromFavorites)
-router.put('/remove-from-favorites', function (req, res) {
-    return res.sendStatus(404)
-})
-router.put('/:id', auth.required, updateUser)
-router.delete('/:id', auth.required, deleteUser)
+/**
+ *  @swagger
+ *  /user:
+ *      get:
+ *          tags: [User]
+ *          summary: Get a user by id
+ *          security:
+ *             - bearerAuth: []
+ *          responses:
+ *              200:
+ *                  description: Successfully retrieved a user
+ *                  schema:
+ *                      type: array
+ *                      items:
+ *                          $ref: '#/components/schemas/User'
+ *                  content:
+ *                      application/json:
+ *                          schema:
+ *                              type: array
+ *                              $ref: '#/components/schemas/User'
+ *                          example:
+ *                              id: 614e1de21478556d787c9694
+ *                              username: johndoe
+ *                              name: John
+ *                              lastname: Doe
+ *                              email: johndoe@gmail.com
+ *                              type: user
+ *                              favorites: []
+ *                              comments: []
+ *                              createdAt: 2021-09-24T18:50:10.162Z
+ *                              updatedAt: 2021-09-24T18:50:10.162Z
+ */
 
-module.exports = router;
