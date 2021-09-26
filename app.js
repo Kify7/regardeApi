@@ -21,7 +21,7 @@ const options = {
         },
         servers: [{
             url: `http://localhost:${PORT}/v1`,
-            url: `https://regardapi.herokuapp.com//v1`,
+            url: `https://regardapi.herokuapp.com/v1`,
         }]
     },
     apis: ["./Routes/*.js"]
