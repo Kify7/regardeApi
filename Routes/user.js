@@ -5,7 +5,6 @@ const auth = require('./auth')
 router.post('/login', logIn)
 router.post('/', createUser)
 router.get('/:id', auth.required, getUser)
-
 router.get('/', auth.required, getUser)
 router.put('/add-to-favorites/:id', auth.required, addToFavorites)
 router.put('/add-to-favorites', function (req, res) {
@@ -146,6 +145,7 @@ module.exports = router;
  *      get:
  *          tags: [User]
  *          summary: Get a user by id
+ *          description: Get a user by his id
  *          security:
  *             - bearerAuth: []
  *          parameters:
@@ -180,12 +180,13 @@ module.exports = router;
  *  /user:
  *      get:
  *          tags: [User]
- *          summary: Get a user by id
+ *          summary: Get all users
+ *          description: Get all users
  *          security:
  *             - bearerAuth: []
  *          responses:
  *              200:
- *                  description: Successfully retrieved a user
+ *                  description: Successfully retrieved all users
  *                  schema:
  *                      type: array
  *                      items:
@@ -208,3 +209,132 @@ module.exports = router;
  *                              updatedAt: 2021-09-24T18:50:10.162Z
  */
 
+/**
+ *  @swagger
+ *  /user/add-to-favorites/{id}:
+ *      put:
+ *          tags: [User]
+ *          summary: Save a movie on a favorites list by id
+ *          description: Push a movie on a favorites list by id
+ *          consumes:
+ *              - application/json
+ *          produces:
+ *              - application/json 
+ *          security:
+ *             - bearerAuth: []
+ *          parameters:
+ *              - in: path
+ *                name: User ID
+ *                schema:
+ *                  type: string
+ *                required: true
+ *                description: User id
+ *          requestBody:
+ *              required: true
+ *              content:
+ *                  application/json:
+ *                      schema:
+ *                          type: string
+ *                      example:
+ *                          movie: 614cdb79673f651a745190fc
+ *          responses:
+ *              200:
+ *                  description: Se agregó a la lista de favoritos
+ */
+
+/**
+ *  @swagger
+ *  /user/remove-from-favorites/{id}:
+ *      put:
+ *          tags: [User]
+ *          summary: Remove a film from the list of favorites by id
+ *          description: Pull a film from the list of favorites by id
+ *          consumes:
+ *              - application/json
+ *          produces:
+ *              - application/json 
+ *          security:
+ *             - bearerAuth: []
+ *          parameters:
+ *              - in: path
+ *                name: User ID
+ *                schema:
+ *                  type: string
+ *                required: true
+ *                description: User id
+ *          requestBody:
+ *              required: true
+ *              content:
+ *                  application/json:
+ *                      schema:
+ *                          type: string
+ *                      example:
+ *                          movie: 614cdb79673f651a745190fc
+ *          responses:
+ *              200:
+ *                  description: Se eliminó de la lista de favoritos
+ */
+
+/**
+ *  @swagger
+ *  /user/{id}:
+ *      put:
+ *          tags: [User]
+ *          summary: Update a user
+ *          description: Push data to update a user in the system
+ *          consumes:
+ *              - application/json
+ *          produces:
+ *              - application/json 
+ *          security:
+ *             - bearerAuth: []
+ *          parameters:
+ *              - in: path
+ *                name: User ID
+ *                schema:
+ *                  type: string
+ *                required: true
+ *                description: User id
+ *          requestBody:
+ *              required: true
+ *              content:
+ *                  application/json:
+ *                     schema:
+ *                        $ref: '#/components/schemas/User' 
+ *          responses:
+ *              200:
+ *                  description: Successfully created a new user
+ *                  content: 
+ *                      application/json:
+ *                          schema:
+ *                              $ref: '#/components/schemas/User'
+ *              500:
+ *                  description: Internal server error
+ */
+
+/**
+ *  @swagger
+ *  /user/{id}:
+ *      delete:
+ *          tags: [User]
+ *          summary: Delete a user
+ *          description: Delete a user from the system
+ *          consumes:
+ *              - application/json
+ *          produces:
+ *              - application/json 
+ *          security:
+ *             - bearerAuth: []
+ *          parameters:
+ *              - in: path
+ *                name: User ID
+ *                schema:
+ *                  type: string
+ *                required: true
+ *                description: User id
+ *          responses:
+ *              200:
+ *                  description: Usuario eliminado
+ *              500:
+ *                  description: Internal server error
+ */
