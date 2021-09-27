@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { createUser, getUser, updateUser, deleteUser, logIn, addToFavorites, removeFromFavorites } = require('../controllers/user')
+const { createUser, getUser, updateUser, deleteUser, deleteAccount, logIn, addToFavorites, removeFromFavorites } = require('../controllers/user')
 const auth = require('./auth')
 
 router.post('/login', logIn)
@@ -15,6 +15,7 @@ router.put('/remove-from-favorites', function (req, res) {
     return res.sendStatus(404)
 })
 router.put('/:id', auth.required, updateUser)
+router.delete('/delete-account', auth.required, deleteAccount)
 router.delete('/:id', auth.required, deleteUser)
 
 module.exports = router;
