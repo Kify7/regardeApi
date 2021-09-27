@@ -130,7 +130,7 @@ module.exports = router;
  *          description: Get a movie by name
  *          parameters:
  *              - in: path
- *                name: Movie name
+ *                name: name
  *                schema:
  *                  type: string
  *                required: true
@@ -167,7 +167,7 @@ module.exports = router;
  *          description: Get a movie by category
  *          parameters:
  *              - in: path
- *                name: Movie category
+ *                name: category
  *                schema:
  *                  type: string
  *                required: true
@@ -243,7 +243,7 @@ module.exports = router;
  *          description: Get a movie by id
  *          parameters:
  *              - in: path
- *                name: Movie id
+ *                name: id
  *                schema:
  *                  type: string
  *                required: true
@@ -316,7 +316,7 @@ module.exports = router;
  *             - bearerAuth: []
  *          parameters:
  *              - in: path
- *                name: Movie ID
+ *                name: id
  *                schema:
  *                  type: string
  *                required: true
@@ -372,7 +372,7 @@ module.exports = router;
  *             - bearerAuth: []
  *          parameters:
  *              - in: path
- *                name: Movie ID
+ *                name: id
  *                schema:
  *                  type: string
  *                required: true

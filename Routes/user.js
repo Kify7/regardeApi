@@ -151,7 +151,7 @@ module.exports = router;
  *             - bearerAuth: []
  *          parameters:
  *              - in: path
- *                name: Admin ID
+ *                name: id
  *                schema:
  *                  type: string
  *                required: true
@@ -225,7 +225,7 @@ module.exports = router;
  *             - bearerAuth: []
  *          parameters:
  *              - in: path
- *                name: User ID
+ *                name: id
  *                schema:
  *                  type: string
  *                required: true
@@ -258,7 +258,7 @@ module.exports = router;
  *             - bearerAuth: []
  *          parameters:
  *              - in: path
- *                name: User ID
+ *                name: id
  *                schema:
  *                  type: string
  *                required: true
@@ -291,7 +291,7 @@ module.exports = router;
  *             - bearerAuth: []
  *          parameters:
  *              - in: path
- *                name: User ID
+ *                name: id
  *                schema:
  *                  type: string
  *                required: true
@@ -348,7 +348,7 @@ module.exports = router;
  *             - bearerAuth: []
  *          parameters:
  *              - in: path
- *                name: User ID
+ *                name: id
  *                schema:
  *                  type: string
  *                required: true
