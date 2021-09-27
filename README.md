@@ -60,7 +60,7 @@ npm run dev
 ## Liga a la documentación
 * [Documentación Swagger](https://regardapi.herokuapp.com/docs)
 
-## Liga al video de presentacion
+## Liga al video de presentación
 * [Video](https://youtu.be/dfr8J2g8Z8o)
 
 ## 💻 Colaboradores
