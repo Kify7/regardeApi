@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { createUser, getUser, updateUser, deleteUser, logIn, addToFavorites, removeFromFavorites } = require('../controllers/user')
+const { createUser, getUser, updateUser, deleteUser, deleteAccount, logIn, addToFavorites, removeFromFavorites } = require('../controllers/user')
 const auth = require('./auth')
 
 router.post('/login', logIn)
@@ -15,6 +15,7 @@ router.put('/remove-from-favorites', function (req, res) {
     return res.sendStatus(404)
 })
 router.put('/:id', auth.required, updateUser)
+router.delete('/delete-account', auth.required, deleteAccount)
 router.delete('/:id', auth.required, deleteUser)
 
 module.exports = router;
@@ -314,11 +315,31 @@ module.exports = router;
 
 /**
  *  @swagger
+ *  /user/delete-account:
+ *      delete:
+ *          tags: [User]
+ *          summary: Delete my user
+ *          description: Delete my user from the system
+ *          consumes:
+ *              - application/json
+ *          produces:
+ *              - application/json 
+ *          security:
+ *             - bearerAuth: []
+ *          responses:
+ *              200:
+ *                  description: Usuario eliminado
+ *              500:
+ *                  description: Internal server error
+ */
+
+/**
+ *  @swagger
  *  /user/{id}:
  *      delete:
  *          tags: [User]
  *          summary: Delete a user
- *          description: Delete a user from the system
+ *          description: An admin can delete a user from the system
  *          consumes:
  *              - application/json
  *          produces:

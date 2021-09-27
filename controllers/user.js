@@ -71,7 +71,31 @@ function updateUser(req, res, next) {
 }
 
 function deleteUser(req, res, next) {
-    if (req.params.id === req.user.id || req.user.type === "admin") {
+    User.findById(req.params.id).then(user => {
+       if (!user) {
+        return res.send('El usuario no existe')
+        }
+    })
+    if (req.user.type === "admin") {
+        User.findOneAndDelete({
+                _id: req.params.id
+            })
+            .then(r => {
+                res.status(200).send('Usuario eliminado')
+            })
+            .catch(next)
+    } else {
+        return res.sendStatus(401)
+    }
+}
+
+function deleteAccount(req, res, next) {
+    User.findById(req.user.id).then(user => {
+       if (!user) {
+        return res.send('El usuario no existe')
+        }
+    })
+    if (req.user.type === "admin" || req.user.type === "user") {
         User.findOneAndDelete({
                 _id: req.user.id
             })
@@ -172,6 +196,7 @@ module.exports = {
     getUser,
     updateUser,
     deleteUser,
+    deleteAccount,
     logIn,
     addToFavorites,
     removeFromFavorites
