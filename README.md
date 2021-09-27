@@ -54,15 +54,21 @@ Development Environment
 npm run dev
 ```
 
-## Producción
+## Liga de la aplicación
 * [Regarde Api](https://regardapi.herokuapp.com/v1/) 
-* [Documentación Swagger](https://regardapi.herokuapp.com/docs)
 
+## Liga a la documentación
+* [Documentación Swagger](https://regardapi.herokuapp.com/docs)
 
 ## 💻 Colaboradores
 
 * Karla Flores Valona - [Kify7](https://github.com/Kify7) y [Charlie-Kify](https://github.com/Charlie-Kify)
+    * [Linkedin](https://www.linkedin.com/)
 * Jorge Alberto Gomez Gomez - [jorgealbertogomezgomez77](https://github.com/jorgealbertogomezgomez77)
+    * [Linkedin](https://www.linkedin.com/)
 * Jessica Astrid Ortega Murillo - [Jessica-02](https://github.com/Jessica-02)
+    * [Linkedin](https://www.linkedin.com/)
 * Martha Rachell Gozcon Domínguez - [rachelldgz](https://github.com/rachelldgz)
+    * [Linkedin](https://www.linkedin.com/)
 * Brian Gibran Godoy Lomelí - [GibranGodoy](https://github.com/GibranGodoy)
+    * [Linkedin](https://www.linkedin.com/in/gibran-godoy/)
