@@ -155,7 +155,7 @@ module.exports = router;
  *                schema:
  *                  type: string
  *                required: true
- *                description: Admin ID
+ *                description: User ID
  *          responses:
  *              200:
  *                  description: Successfully retrieved a user
