@@ -315,11 +315,31 @@ module.exports = router;
 
 /**
  *  @swagger
+ *  /user/delete-account:
+ *      delete:
+ *          tags: [User]
+ *          summary: Delete my user
+ *          description: Delete my user from the system
+ *          consumes:
+ *              - application/json
+ *          produces:
+ *              - application/json 
+ *          security:
+ *             - bearerAuth: []
+ *          responses:
+ *              200:
+ *                  description: Usuario eliminado
+ *              500:
+ *                  description: Internal server error
+ */
+
+/**
+ *  @swagger
  *  /user/{id}:
  *      delete:
  *          tags: [User]
  *          summary: Delete a user
- *          description: Delete a user from the system
+ *          description: An admin can delete a user from the system
  *          consumes:
  *              - application/json
  *          produces:
