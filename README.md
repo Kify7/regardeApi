@@ -56,6 +56,7 @@ npm run dev
 
 ## Producción
 * [Regarde Api](https://regardapi.herokuapp.com/v1/) 
+* [Documentación Swagger](https://regardapi.herokuapp.com/docs)
 
 
 ## 💻 Colaboradores
