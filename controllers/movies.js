@@ -64,8 +64,8 @@ function updateMovie(req, res, next) {
                 movie.poster = newData.poster
             if (typeof newData.description !== 'undefined')
                 movie.description = newData.description
-            if (typeof newData.ranking !== 'undefined')
-                movie.ranking = newData.ranking
+            if (typeof newData.rate !== 'undefined')
+                movie.rate = newData.rate
             if (typeof newData.trailer !== 'undefined')
                 movie.trailer = newData.trailer
             movie.save()
