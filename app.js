@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require('cors');
 const app = express();
 require('dotenv').config();
 const swaggerUi = require('swagger-ui-express');
@@ -9,6 +10,20 @@ const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({
     extended: false
 }));
+
+const config = {
+    application: {
+        cors: {
+            server: [{
+                origin: '*',
+                credentials: true
+            }]
+        }
+    }
+}
+
+app.use(cors(config.application.cors.server));
+
 app.use(bodyParser.json());
 
 const options = {
