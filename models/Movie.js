@@ -8,7 +8,7 @@ const MovieSchema = new mongoose.Schema({
     directors: [String],
     cast: [String],
     poster: {type: String},
-    description: {type: String, require: true},
+    description: {type: String, required: true},
     rate: {type: Number, min: 0, max: 5},
     trailer: { type: String },
     comments: [
