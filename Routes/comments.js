@@ -6,7 +6,8 @@ const {
     updateComment,
     deleteComment,
     commentsofMovie,
-    commentsbyUser
+    commentsbyUser,
+    lastComments
 } = require('../controllers/comments')
 const auth = require('./auth')
 
@@ -19,6 +20,7 @@ router.get('/ofmovie/:id', commentsofMovie)
 router.get('/ofmovie', function (req, res) {
     return res.sendStatus(404)
 })
+router.get('/last', lastComments)
 router.get('/:id', getComment)
 router.get('/', getComment)
 router.put('/:id', auth.required, updateComment)
