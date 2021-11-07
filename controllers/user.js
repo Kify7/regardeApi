@@ -150,11 +150,11 @@ async function addToFavorites(req, res, next) {
     if (req.params.id != id) {
         return res.send('Error')
     }
-    const existe = await User.findOne({ favorites: movie })
-    console.log(existe);
-    if (existe) {
-        return res.send('Ya estaba en la lista de favoritos')
-    }
+    // const existe = await User.findOne({ favorites: movie })
+    // console.log(existe);
+    // if (existe) {
+    //     return res.send('Ya estaba en la lista de favoritos')
+    // }
 
     try {
         const favoritesupdated = await User.findByIdAndUpdate(id, {
