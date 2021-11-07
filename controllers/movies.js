@@ -112,13 +112,13 @@ function getTop5(req, res, next) {
         {
             '$limit': 5
         },
-        {
-            '$project': {
-                'title': 1,
-                'year': 1,
-                '_id': 0
-            }
-        }
+        // {
+        //     '$project': {
+        //         'title': 1,
+        //         'year': 1,
+        //         '_id': 1
+        //     }
+        // }
     ])
         .then(r => {
             res.status(200).send(r)
@@ -128,12 +128,12 @@ function getTop5(req, res, next) {
 function getRecents(req, res, next) {
     req.body
     Movie.aggregate([
-        {
-            '$project': {
-                'title': 1,
-                'year': 1
-            }
-        },
+        // {
+        //     '$project': {
+        //         'title': 1,
+        //         'year': 1
+        //     }
+        // },
         {
             '$sort': {
                 'year': -1
