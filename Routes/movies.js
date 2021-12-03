@@ -7,7 +7,8 @@ const {
     moviebyName,
     getTop5,
     getRecents,
-    movieByCategory
+    movieByCategory,
+    getRandomMovies
 } = require('../controllers/movies')
 const auth = require('./auth')
 
@@ -23,6 +24,7 @@ router.get('/group', function (req, res) {
 })
 router.get('/top5', getTop5)
 router.get('/recents', getRecents)
+router.get('/randomMovies', getRandomMovies)
 router.get('/:id', getMovie)
 router.get('/', getMovie)
 router.put('/:id', auth.required, updateMovie)
@@ -221,6 +223,25 @@ module.exports = router;
  *          tags: [Movie]
  *          summary: Recent movies
  *          description: Get the recent movies
+ *          responses:
+ *              200:
+ *                  description: Successfully retrieved movies
+ *                  content: 
+ *                      application/json:
+ *                          schema:
+ *                              type: array
+ *                          example:
+ *                              _id: 614cdb79673f651a745190fc
+ *                              title: Kimi no Na wa
+ *                              year: 2016
+ */
+
+ /**
+* /movies/randomMovies:
+ *      get:
+ *          tags: [Movie]
+ *          summary: 10 random movies
+ *          description: Get the 10 random movies
  *          responses:
  *              200:
  *                  description: Successfully retrieved movies

@@ -149,6 +149,21 @@ function getRecents(req, res, next) {
         .catch(next)
 }
 
+function getRandomMovies(req, res, next){
+    Movie.aggregate([
+        {
+            '$sample': {
+                size: 10
+            }
+        },
+    ])
+        .then(r => {
+            res.status(200).send(r)
+        }).catch(next)
+}
+
+
+
 module.exports = {
     createMovie,
     getMovie,
@@ -157,5 +172,6 @@ module.exports = {
     moviebyName,
     movieByCategory,
     getTop5,
-    getRecents
+    getRecents,
+    getRandomMovies
 }
