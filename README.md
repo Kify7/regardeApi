@@ -7,8 +7,8 @@
 
 _Desarrollo de una RESTful API de Películas_
 
-* Esta Interfaz de Programación de Aplicaciones está  destinada a proveer información acerca de películas de anime japonés mediante una base de datos sintetizada eficientemenete.
-* El usar esta API, se podrá acceder a la base de datos con el fin de alimentar una aplicación en la que los usuarios puedan registrarse, encontrar películas existentes en el mercado y de estreno, así como el poder comentar las ya vistas.
+* Esta Interfaz de Programación de Aplicaciones está  destinada a proveer información acerca de películas de anime japonés mediante una base de datos sintetizada eficientemente.
+* Al usar esta API, se podrá acceder a la base de datos con el fin de alimentar una aplicación en la que los usuarios puedan registrarse, encontrar películas existentes en el mercado y de estreno, así como el poder comentar las ya vistas.
 
 ### 🛠️ Construido con:
 
